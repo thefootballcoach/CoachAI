@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Test</title>
+</head>
+<body>
+    <h2>Large File Upload Test</h2>
+    <form id="uploadForm" enctype="multipart/form-data" method="post" action="/api/audios/upload">
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title" value="Test Large Upload" required>
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea name="description">Testing large file upload system</textarea>
+        </div>
+        <div>
+            <label>Coach Name:</label>
+            <input type="text" name="coachName" value="Test Coach">
+        </div>
+        <div>
+            <label>Age Group:</label>
+            <input type="text" name="ageGroup" value="U18">
+        </div>
+        <div>
+            <label>Intended Outcomes:</label>
+            <textarea name="intendedOutcomes">Test intended outcomes</textarea>
+        </div>
+        <div>
+            <label>Session Strengths:</label>
+            <textarea name="sessionStrengths">Test session strengths</textarea>
+        </div>
+        <div>
+            <label>Areas for Development:</label>
+            <textarea name="areasForDevelopment">Test areas for development</textarea>
+        </div>
+        <div>
+            <label>Reflection Notes:</label>
+            <textarea name="reflectionNotes">Test reflection notes</textarea>
+        </div>
+        <div>
+            <label>Audio/Video File:</label>
+            <input type="file" name="audio" accept="audio/*,video/*" required>
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const resultDiv = document.getElementById('result');
+            const fileInput = document.querySelector('input[type="file"]');
+            const file = fileInput.files[0];
+            
+            try {
+                // Display file information
+                resultDiv.innerHTML = `
+                    <h3>Upload Information</h3>
+                    <p>File: ${file ? file.name : 'No file selected'}</p>
+                    <p>Size: ${file ? (file.size / (1024*1024)).toFixed(2) + ' MB' : 'N/A'}</p>
+                    <p>Type: ${file ? file.type : 'N/A'}</p>
+                    <p>Status: Uploading...</p>
+                `;
+                
+                const response = await fetch('/api/audios/upload', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                const result = await response.text();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML += `<h3>✓ Upload Successful!</h3><pre>${result}</pre>`;
+                } else {
+                    resultDiv.innerHTML += `<h3>✗ Upload Failed (${response.status})</h3><pre>${result}</pre>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML += `<h3>✗ Network Error</h3><pre>Error: ${error.message}
+                
+Possible causes:
+1. File too large (over 6GB)
+2. Invalid file type (must be audio/video)
+3. Authentication required (login first)
+4. Network timeout or connection issue
+
+Try:
+- Smaller file size
+- Different file format (.mp3, .mp4, .wav, .mov)
+- Login first at /api/login</pre>`;
+            }
+        });
+
+        // Add file size validation
+        document.querySelector('input[type="file"]').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const maxSize = 6 * 1024 * 1024 * 1024; // 6GB
+                if (file.size > maxSize) {
+                    alert(`File too large: ${(file.size / (1024*1024*1024)).toFixed(2)}GB. Maximum allowed: 6GB`);
+                    e.target.value = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

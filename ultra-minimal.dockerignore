@@ -1,0 +1,80 @@
+# ULTRA MINIMAL - Only include absolute essentials
+
+# Exclude ALL source code - only deploy built artifacts
+client/
+shared/
+scripts/
+*.ts
+*.tsx
+*.js
+!dist/
+
+# Exclude ALL development files
+*.test.*
+*.spec.*
+*.stories.*
+__tests__/
+test/
+tests/
+coverage/
+.nyc_output/
+
+# Exclude ALL documentation
+*.md
+docs/
+documentation/
+examples/
+demo/
+
+# Exclude ALL config and cache
+.vscode/
+.idea/
+.cache/
+.vite/
+.next/
+node_modules/.cache/
+*.log
+*.map
+
+# Exclude environment files
+.env*
+!.env.production
+
+# Exclude git and package files
+.git/
+.gitignore
+yarn.lock
+pnpm-lock.yaml
+
+# Exclude media files
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.psd
+*.ai
+
+# Exclude temporary files
+*.tmp
+*.backup
+*.bak
+temp/
+tmp/
+
+# Exclude Replit files
+.replit
+.upm/
+.config/
+attached_assets/
+
+# Keep only these essential files:
+# - package.json
+# - package-lock.json  
+# - dist/ (built application)
+# - production env files

@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "ffmpeg"]
+
+[phases.install]
+cmds = ["npm install --legacy-peer-deps --no-audit --no-fund --omit=dev"]
+
+[start]
+cmd = "npm start"
+
+[variables]
+NODE_ENV = "production"

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simplified Upload Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin: 10px 0; }
+        label { display: block; margin-bottom: 5px; }
+        input, textarea { width: 300px; padding: 5px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        .error { background: #ffebee; border-color: #f44336; }
+        .success { background: #e8f5e9; border-color: #4caf50; }
+    </style>
+</head>
+<body>
+    <h2>Simplified Upload Test - Minimal Headers</h2>
+    
+    <form id="uploadForm">
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" name="t" value="Test" required maxlength="20">
+        </div>
+        
+        <div class="form-group">
+            <label>Coach:</label>
+            <input type="text" name="c" value="Coach" maxlength="20">
+        </div>
+        
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="text" name="a" value="U18" maxlength="10">
+        </div>
+        
+        <div class="form-group">
+            <label>Audio/Video File:</label>
+            <input type="file" name="audio" accept="audio/*,video/*" required>
+        </div>
+        
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const resultDiv = document.getElementById('result');
+            const fileInput = document.querySelector('input[type="file"]');
+            const file = fileInput.files[0];
+            
+            try {
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h3>Upload Information</h3>
+                        <p>File: ${file ? file.name : 'No file selected'}</p>
+                        <p>Size: ${file ? (file.size / (1024*1024)).toFixed(2) + ' MB' : 'N/A'}</p>
+                        <p>Type: ${file ? file.type : 'N/A'}</p>
+                        <p>Status: Uploading...</p>
+                    </div>
+                `;
+                
+                const response = await fetch('/api/audios/upload', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                const result = await response.text();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="result success">
+                            <h3>✓ Upload Successful!</h3>
+                            <pre>${result}</pre>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result error">
+                            <h3>✗ Upload Failed (${response.status})</h3>
+                            <pre>${result}</pre>
+                            <p><strong>If you see "Request entry too large":</strong></p>
+                            <ul>
+                                <li>Try using a shorter title</li>
+                                <li>Ensure file is under 6GB</li>
+                                <li>Check file format is supported</li>
+                                <li>Login first if not authenticated</li>
+                            </ul>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <h3>✗ Network Error</h3>
+                        <pre>Error: ${error.message}</pre>
+                        <p><strong>Common causes:</strong></p>
+                        <ul>
+                            <li>Request headers too large</li>
+                            <li>Network timeout</li>
+                            <li>Server connection failed</li>
+                            <li>Authentication required</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

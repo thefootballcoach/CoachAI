@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap&subset=latin&font-display=swap') layer(fonts);
+
+@layer base, components, utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Chrome flickering fixes */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Reduce layout shifts */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+}
+
+/* Fix title text z-index issue */
+.hero-section h1 {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.hero-section h1 span {
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+/* Mobile-first responsive improvements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Improve text readability on mobile */
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Better button touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
+/* Optimize animations for performance and prevent Chrome flickering */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Chrome-specific optimizations */
+.card, .button, .input, [role="button"] {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ELEGANT PURPLE BRANDING - STRATEGIC COLOR APPLICATION */
+/* Apply purple to key brand elements while preserving design integrity */
+
+/* Primary Brand Elements */
+.bg-primary {
+  background-color: #8A4FFF !important;
+}
+
+.text-primary {
+  color: #8A4FFF !important;
+}
+
+.border-primary {
+  border-color: #8A4FFF !important;
+}
+
+/* Primary Buttons and Actions */
+button[class*="bg-primary"], .btn-primary, button[class*="bg-blue"] {
+  background-color: #8A4FFF !important;
+  border-color: #8A4FFF !important;
+}
+
+button[class*="bg-primary"]:hover, .btn-primary:hover, button[class*="bg-blue"]:hover {
+  background-color: #7C3AED !important;
+  border-color: #7C3AED !important;
+}
+
+/* Key Links and Interactive Text */
+.text-blue-600, .text-blue-500, .text-blue-700 {
+  color: #8A4FFF !important;
+}
+
+.text-blue-600:hover, .text-blue-500:hover, .text-blue-700:hover {
+  color: #7C3AED !important;
+}
+
+/* Progress Bars and Data Visualization */
+.bg-chart-1, [class*="bg-blue-"] {
+  background-color: #8A4FFF !important;
+}
+
+.bg-chart-2 {
+  background-color: #7C3AED !important;
+}
+
+.bg-chart-3 {
+  background-color: #B794F6 !important;
+}
+
+/* Focus States and Rings */
+.ring-blue-500, .focus\:ring-blue-500:focus {
+  --tw-ring-color: #8A4FFF !important;
+}
+
+/* Accent Elements */
+.bg-secondary {
+  background-color: #B794F6 !important;
+}
+
+.text-secondary {
+  color: #B794F6 !important;
+}
+
+/* Prevent Chrome flickering on transitions */
+* {
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+
+/* Improve font loading performance */
+.font-black, .font-bold {
+  font-display: swap;
+}
+
+/* Optimize gradients for better performance */
+.bg-gradient-to-r, .bg-gradient-to-br {
+  will-change: auto;
+}
+
+/* Reduce paint operations */
+.backdrop-blur-sm, .backdrop-blur-md {
+  transform: translateZ(0);
+}
+
+/* Optimize animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --primary: 262 100% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 267 83% 58%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 265 89% 78%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 262 100% 65%;
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: 262 100% 65%;
+  --chart-2: 267 83% 58%;
+  --chart-3: 265 89% 78%;
+  --chart-4: 153 47% 49%;
+  --chart-5: 262 91% 73%;
+
+  /* Sidebar colors */
+  --sidebar-background: 240 21% 15%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 262 100% 65%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 265 89% 78%;
+  --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+  --sidebar-border: 215 25% 27%;
+  --sidebar-ring: 262 100% 65%;
+}
+
+.dark {
+  --background: 240 21% 15%;
+  --foreground: 0 0% 100%;
+  --muted: 215 25% 27%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --popover: 240 21% 15%;
+  --popover-foreground: 0 0% 100%;
+  --card: 213 24% 20%;
+  --card-foreground: 0 0% 100%;
+  --border: 215 25% 27%;
+  --input: 215 25% 27%;
+  --primary: 262 100% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 267 83% 58%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 215 25% 27%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 262 100% 65%;
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-gradient {
+  background: linear-gradient(120deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.9), rgba(15, 52, 96, 0.8)), url('https://images.unsplash.com/photo-1544921153-c714a055593b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center;
+  background-size: cover;
+}
+
+/* Elegant purple accent gradient for hero sections */
+.hero-section, .hero-gradient {
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.95) 0%, 
+    rgba(138, 79, 255, 0.3) 50%, 
+    rgba(30, 41, 59, 0.95) 100%
+  ), url('https://images.unsplash.com/photo-1544921153-c714a055593b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center !important;
+  background-size: cover !important;
+}
+
+.feedback-card {
+  transition: transform 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.feedback-card:hover {
+  transform: translateY(-5px) translateZ(0);
+}
+
+.progress-chart-bar {
+  transition: width 1s ease-out;
+}
+
+.video-progress {
+  transition: width 0.5s ease-in-out;
+}
+/* Purple Theme Force Update Sun Jul 13 02:48:48 PM UTC 2025 */

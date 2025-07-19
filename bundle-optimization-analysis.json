@@ -1,0 +1,35 @@
+{
+  "recommendations": [
+    {
+      "action": "Exclude scripts/ directory",
+      "impact": "High - removes ~94 TypeScript files",
+      "status": "Implemented via .dockerignore"
+    },
+    {
+      "action": "Enable tree shaking and minification",
+      "impact": "Medium - reduces JavaScript bundle size",
+      "status": "Implemented in build script"
+    },
+    {
+      "action": "Remove source maps in production",
+      "impact": "Medium - eliminates .map files",
+      "status": "Implemented"
+    },
+    {
+      "action": "Exclude development files and tests",
+      "impact": "Medium - removes unused files",
+      "status": "Implemented via .dockerignore"
+    },
+    {
+      "action": "Compress static assets",
+      "impact": "Low-Medium - reduces file sizes",
+      "status": "Available in deployment-optimize.sh"
+    }
+  ],
+  "nextSteps": [
+    "Run the optimized build: ./build-optimized.sh",
+    "Test the application locally",
+    "Deploy using the optimized build",
+    "Monitor deployment logs for any issues"
+  ]
+}

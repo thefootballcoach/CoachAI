@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Large Form Upload Test - CoachAI</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        textarea { height: 100px; resize: vertical; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .status { margin-top: 20px; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Large Form Upload Test</h1>
+    <p>This test verifies that the "413 Request Entity Too Large" error has been permanently resolved.</p>
+    
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Session Title:</label>
+            <input type="text" id="title" name="title" value="Comprehensive Training Session with Extensive Metadata Testing for Header Size Validation" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Session Description:</label>
+            <textarea id="description" name="description">This is an extensive coaching session description designed to test the complete resolution of HTTP header size limitations. The session covered multiple tactical concepts including positional play, defensive transitions, attacking patterns, set piece execution, and individual skill development. Players demonstrated excellent understanding of the concepts introduced and showed consistent improvement throughout the session. The training was structured to progress from basic fundamentals to complex game situations, ensuring comprehensive skill development across all aspects of the game.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="coachName">Coach Name:</label>
+            <input type="text" id="coachName" name="coachName" value="Senior Development Coach with Advanced UEFA Coaching Qualifications">
+        </div>
+        
+        <div class="form-group">
+            <label for="ageGroup">Age Group:</label>
+            <input type="text" id="ageGroup" name="ageGroup" value="Under 18 Elite Development Squad - Advanced Technical Program">
+        </div>
+        
+        <div class="form-group">
+            <label for="intendedOutcomes">Intended Session Outcomes:</label>
+            <textarea id="intendedOutcomes" name="intendedOutcomes">Primary objectives include improving tactical awareness in defensive situations, enhancing communication between defensive and midfield units, developing quick decision-making under pressure, strengthening technical skills in tight spaces, building confidence in 1v1 situations, improving crossing accuracy from wide positions, developing leadership qualities in senior players, enhancing fitness levels for sustained high-intensity performance, and fostering team cohesion through collaborative exercises.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="sessionStrengths">Session Strengths:</label>
+            <textarea id="sessionStrengths" name="sessionStrengths">Exceptional player engagement throughout the entire session with consistent high energy levels. Clear demonstration of tactical understanding with players effectively implementing new concepts immediately. Strong communication between coaching staff and players with continuous feedback and adjustment. Excellent progression from basic drills to complex game situations. Outstanding individual skill development particularly in technical areas. Positive team dynamics with supportive peer interactions. Effective use of training equipment and space optimization. Clear instruction delivery with appropriate demonstration techniques.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="areasForDevelopment">Areas for Development:</label>
+            <textarea id="areasForDevelopment" name="areasForDevelopment">Need to continue working on decision-making speed under high-pressure defensive situations. Improve first touch consistency especially when receiving passes under pressure from opposing players. Enhance defensive positioning during transition phases from attack to defense. Strengthen aerial duel capabilities for both offensive and defensive situations. Develop more accurate crossing from wide positions with better timing and placement. Improve communication clarity during high-intensity game situations. Work on maintaining concentration levels throughout longer training sessions. Enhance physical strength for improved performance in contact situations.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="reflectionNotes">Post-Session Reflection Notes:</label>
+            <textarea id="reflectionNotes" name="reflectionNotes">This session was highly successful in achieving the primary learning objectives with players demonstrating clear understanding and practical application of new concepts. The structured progression from individual skills to team tactics worked particularly well, allowing players to build confidence before applying skills in pressure situations. Player feedback was overwhelmingly positive with specific requests for continuation of similar training methods. Areas for future focus include individual player development plans, enhanced fitness integration, and more complex tactical scenarios. The coaching approach proved effective with clear instruction, appropriate demonstration, and timely feedback contributing to excellent learning outcomes.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="audio">Select Audio/Video File:</label>
+            <input type="file" id="audio" name="audio" accept="audio/*,video/*" required>
+        </div>
+        
+        <button type="submit">Upload Session</button>
+    </form>
+    
+    <div id="status"></div>
+    
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = '<div class="status">Uploading... Please wait.</div>';
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/audios/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    statusDiv.innerHTML = `<div class="status success">✅ Upload successful! Session ID: ${result.id}<br>The "413 Request Entity Too Large" error has been permanently resolved.</div>`;
+                } else {
+                    const errorText = await response.text();
+                    statusDiv.innerHTML = `<div class="status error">❌ Upload failed: ${response.status} ${response.statusText}<br><pre>${errorText}</pre></div>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">❌ Upload failed: ${error.message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

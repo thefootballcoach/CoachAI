@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000008"/>
+    </filter>
+    <style>
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 400; }
+      .body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 400; }
+      .step-number { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="1600" fill="#ffffff"/>
+  
+  <!-- Header -->
+  <rect x="60" y="40" width="1080" height="90" rx="8" fill="url(#primaryGradient)" filter="url(#cardShadow)"/>
+  <text x="600" y="75" text-anchor="middle" fill="white" font-size="26" class="title">How to Create Practice Drills with CoachAI</text>
+  <text x="600" y="100" text-anchor="middle" fill="#bfdbfe" font-size="15" class="subtitle">Transform coaching sessions into personalized development exercises</text>
+  
+  <!-- Step 1: Upload -->
+  <rect x="100" y="180" width="1000" height="120" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" filter="url(#cardShadow)"/>
+  <circle cx="140" cy="240" r="20" fill="#2563eb"/>
+  <text x="140" y="247" text-anchor="middle" fill="white" font-size="16" class="step-number">1</text>
+  
+  <!-- Upload Icon -->
+  <rect x="200" y="210" width="60" height="60" rx="6" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1"/>
+  <path d="M220 240 L240 225 L240 235 L250 235 L250 255 L210 255 L210 235 L220 235 Z" fill="#6b7280"/>
+  <path d="M225 230 L235 230" stroke="#6b7280" stroke-width="2"/>
+  
+  <text x="300" y="225" fill="#111827" font-size="18" class="title">Upload Your Coaching Session</text>
+  <text x="300" y="245" fill="#6b7280" font-size="14" class="body">Upload audio or video files (MP4, MP3, WAV) up to 6GB</text>
+  <text x="300" y="265" fill="#6b7280" font-size="14" class="body">Include self-reflection notes for enhanced analysis</text>
+  
+  <!-- Arrow -->
+  <path d="M600 320 L600 360" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 2: Analysis -->
+  <rect x="100" y="380" width="1000" height="120" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" filter="url(#cardShadow)"/>
+  <circle cx="140" cy="440" r="20" fill="#2563eb"/>
+  <text x="140" y="447" text-anchor="middle" fill="white" font-size="16" class="step-number">2</text>
+  
+  <!-- AI Icon -->
+  <rect x="200" y="410" width="60" height="60" rx="6" fill="#fef3c7" stroke="#fbbf24" stroke-width="1"/>
+  <circle cx="230" cy="440" r="12" fill="#f59e0b"/>
+  <circle cx="225" cy="435" r="2" fill="white"/>
+  <circle cx="235" cy="435" r="2" fill="white"/>
+  <path d="M225 445 Q230 450 235 445" stroke="white" stroke-width="1.5" fill="none"/>
+  
+  <text x="300" y="425" fill="#111827" font-size="18" class="title">AI Analyzes Your Coaching</text>
+  <text x="300" y="445" fill="#6b7280" font-size="14" class="body">Advanced AI evaluates communication, engagement, and technique</text>
+  <text x="300" y="465" fill="#6b7280" font-size="14" class="body">Identifies strengths and areas for improvement</text>
+  
+  <!-- Arrow -->
+  <path d="M600 520 L600 560" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 3: Review -->
+  <rect x="100" y="580" width="1000" height="120" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" filter="url(#cardShadow)"/>
+  <circle cx="140" cy="640" r="20" fill="#2563eb"/>
+  <text x="140" y="647" text-anchor="middle" fill="white" font-size="16" class="step-number">3</text>
+  
+  <!-- Dashboard Icon -->
+  <rect x="200" y="610" width="60" height="60" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/>
+  <rect x="210" y="625" width="15" height="10" fill="#10b981"/>
+  <rect x="230" y="628" width="15" height="7" fill="#10b981"/>
+  <rect x="210" y="640" width="12" height="15" fill="#10b981"/>
+  <rect x="225" y="643" width="18" height="12" fill="#10b981"/>
+  
+  <text x="300" y="625" fill="#111827" font-size="18" class="title">Review Detailed Analysis</text>
+  <text x="300" y="645" fill="#6b7280" font-size="14" class="body">View comprehensive feedback and coaching scores</text>
+  <text x="300" y="665" fill="#6b7280" font-size="14" class="body">Access personalized recommendations</text>
+  
+  <!-- Arrow -->
+  <path d="M600 720 L600 760" stroke="#d1d5db" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Step 4: Get Drills -->
+  <rect x="100" y="780" width="1000" height="120" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="1" filter="url(#cardShadow)"/>
+  <circle cx="140" cy="840" r="20" fill="#2563eb"/>
+  <text x="140" y="847" text-anchor="middle" fill="white" font-size="16" class="step-number">4</text>
+  
+  <!-- Drill Icon -->
+  <rect x="200" y="810" width="60" height="60" rx="6" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="1"/>
+  <circle cx="230" cy="835" r="6" fill="#8b5cf6"/>
+  <path d="M225 835 L235 835 M230 830 L230 840" stroke="white" stroke-width="1.5"/>
+  <rect x="215" y="850" width="30" height="2" fill="#8b5cf6"/>
+  <rect x="220" y="855" width="20" height="1" fill="#8b5cf6"/>
+  
+  <text x="300" y="825" fill="#111827" font-size="18" class="title">Get Personalized Practice Drills</text>
+  <text x="300" y="845" fill="#6b7280" font-size="14" class="body">Click "Practice Exercises" tab for tailored drills</text>
+  <text x="300" y="865" fill="#6b7280" font-size="14" class="body">Download this guide anytime for reference</text>
+  
+  <!-- Example Drills Section -->
+  <rect x="100" y="960" width="1000" height="240" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="600" y="995" text-anchor="middle" fill="#111827" font-size="20" class="title">Example Practice Drills</text>
+  
+  <!-- Communication Drill -->
+  <rect x="150" y="1020" width="280" height="160" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="150" y="1020" width="280" height="35" rx="6" fill="#2563eb"/>
+  <text x="290" y="1042" text-anchor="middle" fill="white" font-size="14" class="title">Communication</text>
+  <text x="170" y="1070" fill="#374151" font-size="13" class="body">• Practice 10-15 word instructions</text>
+  <text x="170" y="1090" fill="#374151" font-size="13" class="body">• Record feedback for clarity</text>
+  <text x="170" y="1110" fill="#374151" font-size="13" class="body">• Use "pause and check" method</text>
+  <text x="170" y="1130" fill="#374151" font-size="13" class="body">• Focus on simple language</text>
+  <text x="170" y="1150" fill="#374151" font-size="13" class="body">• Practice active listening</text>
+  
+  <!-- Engagement Drill -->
+  <rect x="460" y="1020" width="280" height="160" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="460" y="1020" width="280" height="35" rx="6" fill="#10b981"/>
+  <text x="600" y="1042" text-anchor="middle" fill="white" font-size="14" class="title">Player Engagement</text>
+  <text x="480" y="1070" fill="#374151" font-size="13" class="body">• Use player names 3+ times</text>
+  <text x="480" y="1090" fill="#374151" font-size="13" class="body">• Implement positive feedback</text>
+  <text x="480" y="1110" fill="#374151" font-size="13" class="body">• Create small group activities</text>
+  <text x="480" y="1130" fill="#374151" font-size="13" class="body">• Encourage peer interaction</text>
+  <text x="480" y="1150" fill="#374151" font-size="13" class="body">• Monitor participation levels</text>
+  
+  <!-- Questioning Drill -->
+  <rect x="770" y="1020" width="280" height="160" rx="6" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="770" y="1020" width="280" height="35" rx="6" fill="#8b5cf6"/>
+  <text x="910" y="1042" text-anchor="middle" fill="white" font-size="14" class="title">Questioning Skills</text>
+  <text x="790" y="1070" fill="#374151" font-size="13" class="body">• Ask open-ended questions</text>
+  <text x="790" y="1090" fill="#374151" font-size="13" class="body">• Use "what if" scenarios</text>
+  <text x="790" y="1110" fill="#374151" font-size="13" class="body">• Practice guided discovery</text>
+  <text x="790" y="1130" fill="#374151" font-size="13" class="body">• Encourage critical thinking</text>
+  <text x="790" y="1150" fill="#374151" font-size="13" class="body">• Wait for complete responses</text>
+  
+  <!-- Benefits Section -->
+  <rect x="100" y="1260" width="1000" height="100" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" filter="url(#cardShadow)"/>
+  <text x="600" y="1290" text-anchor="middle" fill="#1e40af" font-size="18" class="title">Why Use CoachAI for Drill Creation?</text>
+  <text x="180" y="1315" fill="#1e40af" font-size="14" class="body">✓ Personalized to your specific coaching style</text>
+  <text x="180" y="1335" fill="#1e40af" font-size="14" class="body">✓ Based on real session analysis</text>
+  <text x="600" y="1315" fill="#1e40af" font-size="14" class="body">✓ Research-backed methodologies</text>
+  <text x="600" y="1335" fill="#1e40af" font-size="14" class="body">✓ Continuously improving</text>
+  
+  <!-- Footer -->
+  <rect x="100" y="1400" width="1000" height="80" rx="8" fill="#1f2937"/>
+  <text x="600" y="1430" text-anchor="middle" fill="white" font-size="16" class="title">CoachAI</text>
+  <text x="600" y="1450" text-anchor="middle" fill="#9ca3af" font-size="13" class="body">AI-Powered Coaching Development Platform</text>
+  <text x="600" y="1470" text-anchor="middle" fill="#6b7280" font-size="12" class="body">Transform your coaching with intelligent analysis and personalized development</text>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d1d5db"/>
+    </marker>
+  </defs>
+</svg>
