@@ -200,7 +200,8 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  await registerRoutes(app);
+  
+  const server = await registerRoutes(app);
 
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
     console.error('Express error handler triggered:', {
