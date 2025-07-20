@@ -11,6 +11,9 @@ import http from "http";
 // Deployment-specific Node.js configuration for 8GB uploads
 process.env.NODE_OPTIONS = '--max-http-header-size=16777216 --max-old-space-size=8192'; // 16MB headers, 8GB memory
 console.log("Set NODE_OPTIONS:", process.env.NODE_OPTIONS);
+console.log("ENV:", process.env);
+console.log("RAILWAY_ENV:", process.env.RAILWAY_ENVIRONMENT);
+
 
 // Additional Node.js server limits for deployment
 process.setMaxListeners(0);
@@ -300,6 +303,8 @@ app.use((req, res, next) => {
       reusePort: true,
     }, async () => {
       log(`serving on port ${port}`);
+      log(`Trying to serve on port ${port}`);
+
 
       // Start processing monitor
       console.log('Starting processing monitor...');
