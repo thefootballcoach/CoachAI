@@ -788,7 +788,10 @@ async function saveComprehensiveFeedback(video: any, transcript: string, multiAI
     const instructionScore = multiAIResult.openaiAnalysis?.instructionScore || 
                             multiAIResult.claudeAnalysis?.instructionalDesign?.assessmentIntegration || 75;
 
-    await storage.createFeedback({
+    // Check if feedback already exists for this video
+    const existingFeedback = await storage.getFeedbackByVideoId(video.id);
+    
+    const feedbackData = {
       userId: video.userId,
       videoId: video.id,
       transcript: transcript,
@@ -816,9 +819,17 @@ async function saveComprehensiveFeedback(video: any, transcript: string, multiAI
       
       // Store complete multi-AI analysis
       multiAiAnalysis: JSON.stringify(multiAIResult)
-    });
-    
-    console.log(`[BULLETPROOF] Comprehensive multi-AI feedback saved for video ${video.id}`);
+    };
+
+    if (existingFeedback) {
+      // Update existing feedback instead of creating duplicate
+      await storage.updateFeedback(existingFeedback.id, feedbackData);
+      console.log(`[BULLETPROOF] Updated existing feedback for video ${video.id} (feedback ID: ${existingFeedback.id})`);
+    } else {
+      // Create new feedback
+      await storage.createFeedback(feedbackData);
+      console.log(`[BULLETPROOF] Created new feedback for video ${video.id}`);
+    }
     
   } catch (error) {
     console.error('[BULLETPROOF] Error saving comprehensive feedback:', error);
