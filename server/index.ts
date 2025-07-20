@@ -7,13 +7,19 @@ import { responseOptimizationMiddleware } from "./response-compression";
 import { generalThrottler } from "./request-throttling";
 import path from "path";
 import http from "http";
+import fs from "fs";
+
+// Load version information
+const VERSION_INFO = {
+  version: "1.2.1", 
+  build: "2025-07-20",
+  description: "Fixed AI duplicate feedback creation bug + eliminated placeholder content",
+  deploymentTrigger: "2025-07-20T21:27:00Z"
+};
 
 // Deployment-specific Node.js configuration for 8GB uploads
 process.env.NODE_OPTIONS = '--max-http-header-size=16777216 --max-old-space-size=8192'; // 16MB headers, 8GB memory
 console.log("Set NODE_OPTIONS:", process.env.NODE_OPTIONS);
-console.log("ENV:", process.env);
-console.log("RAILWAY_ENV:", process.env.RAILWAY_ENVIRONMENT);
-
 
 // Additional Node.js server limits for deployment
 process.setMaxListeners(0);
@@ -152,6 +158,28 @@ app.use((req, res, next) => {
   next();
 });
 
+// Health check endpoint for Railway deployment
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
+    version: VERSION_INFO.version
+  });
+});
+
+// Version endpoint for deployment tracking
+app.get('/api/version', (req, res) => {
+  res.json({
+    ...VERSION_INFO,
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    isDeployment: isDeployment,
+    uptime: process.uptime()
+  });
+});
+
 // Serve test upload page for debugging
 app.get('/test-upload', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'test-large-upload.html'));
@@ -203,7 +231,6 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  
   const server = await registerRoutes(app);
 
   app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
@@ -284,9 +311,9 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
+  // Use Railway's PORT environment variable or fallback to 5000
+  // Railway automatically sets PORT environment variable for production
   // this serves both the API and the client.
-  // It is the only port that is not firewalled.
   const port = process.env.PORT || 5000;
   
   const startServer = () => {
@@ -300,11 +327,8 @@ app.use((req, res, next) => {
     server.listen({
       port,
       host: "0.0.0.0",
-      reusePort: true,
     }, async () => {
       log(`serving on port ${port}`);
-      log(`Trying to serve on port ${port}`);
-
 
       // Start processing monitor
       console.log('Starting processing monitor...');
