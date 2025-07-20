@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs_20", "npm"]
-
-[phases.install]
-cmds = ["npm install --force"]
-
-[start]
-cmd = "NODE_ENV=development npm run dev"
