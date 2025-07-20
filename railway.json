@@ -4,11 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-<<<<<<< HEAD
-    "startCommand": "NODE_ENV=development tsx server/index.ts",
-=======
-    "startCommand": "node dist/index.js",
->>>>>>> 2e0205cacf245fc5d58aecf9e761f9cf83af7c54
+    "startCommand": "npm start",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
