@@ -1,0 +1,15 @@
+CoachAI v1.2.1 Deployment Trigger
+================================
+
+Deployment Date: July 20, 2025
+Version: 1.2.1
+Build: 2025-07-20
+
+Changes Included:
+- Fixed AI duplicate feedback bug with upsert logic
+- Eliminated all placeholder content calculations
+- Authentic coaching feedback only
+- Professional "N/A" displays when data unavailable
+
+This file serves as a deployment trigger to force Render platform recognition of v1.2.1 updates.
+Timestamp: 2025-07-20T21:27:00Z
