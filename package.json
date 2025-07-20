@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  
   "scripts": {
-  "dev": "tsx server/index.ts",
-  "start": "tsx server/index.ts",
-  "build": "echo 'No build step required'",
-  "postinstall": "echo 'Installation complete'"
-}
+    "dev": "tsx server/index.ts",
+    "start": "tsx server/index.ts",
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist"
+  }
+
+
 ,
   "dependencies": {
     "@anthropic-ai/sdk": "0.37.0",

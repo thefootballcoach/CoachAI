@@ -58,3 +58,15 @@ VIDEO_*.md
 cookies.txt
 Dockerfile*
 Procfile*
+
+scripts/uploads/
+*.mp4
+*.mov
+*.wav
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.exe
+*.dll
+.local-chromium/
