@@ -1,11 +1,11 @@
 [phases.setup]
-nixPkgs = ["nodejs_20"]  # ✅ only include nodejs_20
+nixPkgs = ["nodejs_20", "npm"]
 
 [phases.install]
-cmds = ["npm install --legacy-peer-deps"]
+cmds = ["npm install --force"]
 
 [start]
-cmd = "npm start"
+cmd = "npm run dev"
 
 [variables]
 NODE_ENV = "development"
