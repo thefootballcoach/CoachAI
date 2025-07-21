@@ -1,11 +1,17 @@
 [phases.setup]
-nixPkgs = ["nodejs_20"]  # REMOVE npm from here
+nixPkgs = ["nodejs_20", "npm"]
 
 [phases.install]
-cmds = ["npm install --legacy-peer-deps"]
+cmds = [
+  "npm ci --legacy-peer-deps || npm install --legacy-peer-deps --no-audit --no-fund",
+  "npm ls || true"
+]
 
 [start]
 cmd = "npm start"
 
 [variables]
 NODE_ENV = "development"
+NPM_CONFIG_AUDIT = "false"
+NPM_CONFIG_FUND = "false"
+NPM_CONFIG_LEGACY_PEER_DEPS = "true"
